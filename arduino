@@ -1,0 +1,50 @@
+#!/bin/bash
+
+RED='\033[0;31m'
+NC='\033[0m'
+yellow='\033[1;33m'
+green='\033[1;32m'
+enter='a'
+access="a"
+ey="a"
+clear
+echo -e "•Welcome to custom ArduinoIDE Launcher by ${yellow}efeardic.\n \n${RED}WARNING! ${NC} Please close the Arduino IDE the regular way or\ntype the 'xhost -' command manually. ${RED}WARNING! \n ${NC} \n "
+func()
+{
+	device="/dev/ttyACM0"
+	chmod a+rw "$device"
+	[ -w $device ] && W="1" || W="0"
+	[ -r $device ] && R="1" || R="0"
+
+	if [ $W == "1" ] && [ $R == "1" ]
+	then
+		clear
+		echo -e "•Welcome to custom ArduinoIDE Launcher by ${yellow}efeardic.\n \n${RED}WARNING! ${NC} Please close the Arduino IDE the regular way or\ntype the 'xhost -' command manually for security reasons. ${RED}WARNING! \n ${NC} \n "
+		echo -e " Device Permission: ${green}Granted! \n"
+		read -n 1 -s -r -p "Press any key to continue" enter
+		echo -e "${NC}"
+		SCRIPT_PATH="/opt/arduino-1.8.10/arduino_start"
+		"$SCRIPT_PATH"
+	else
+		clear
+		echo -e "•Welcome to custom ArduinoIDE Launcher by ${yellow}efeardic.\n \n${RED}WARNING! ${NC} Please close the Arduino IDE the regular way or\ntype the 'xhost -' command manually for security reasons. ${RED}WARNING! \n ${NC} \n "
+		echo -e " Device Permission: ${RED}Denied! \n ${NC}"
+		read -p "Do you want to continue to ArduinoIDE anyway?(y/n)" access
+			if [ $access == "n" ]
+			then
+				clear
+				echo -e "Make sure your arduino is connected to the computer.\n"
+				read -n 1 -s -r -p "Press any key to continue" ey
+				func
+			elif [ $access == "y" ]
+			then
+				SCRIPT_PATH="/opt/arduino-1.8.10/arduino_start"
+				"$SCRIPT_PATH"
+			else
+				clear
+				func
+			fi
+	fi
+}
+
+func
