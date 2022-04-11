@@ -8,4 +8,4 @@ The way this script is designed, you need to copy the code in your "arduino" scr
 
 In the new arduino script you need to change the SCRIPT_PATH="/opt/arduino-1.8.10/arduino_start" part to wherever your arduino script directory is. This change needs to be made in lines 26 and 41. After that it should be ready to go.
 
-Since this script runs the ArduinoIDE as root, some may consider it a security risk. But since you are probably using this on your personal computer, not on some big company's servers, it shouldn't be a problem. And if you don't close the software with the little x icon like you should, you should probably run the "xhost -" command just to be safe. Use your own discretion.
+Since this script runs the ArduinoIDE as root, some may consider it a security risk. But since you are probably using this on your personal computer, not on some big company's servers, it shouldn't be a problem. And if you don't close the software with the little x icon like you should, you should probably run the "xhost -" command just to be safe. Use at your own discretion
